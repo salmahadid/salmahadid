@@ -6,10 +6,9 @@ Currently focusing on learning NLP and Machine Learning from 0. This GitHub is w
 I also writing about programming, data, and career in computer science.  
 Check out my latest posts here:
 
-- [Your Latest Medium Post Title](https://medium.com/@salcreates/eksplorasi-dan-visualisasi-dataset-iris-dalam-bahasa-r-87ecd6d5f675)
-
+- [Eksplorasi dan Visualisasi Dataset Iris dalam Bahasa R](https://medium.com/@salcreates/eksplorasi-dan-visualisasi-dataset-iris-dalam-bahasa-r-87ecd6d5f675)
 👉 See more on [Medium](https://medium.com/@salcreates)
 
 ## 🌸 Find Me
-- [Instagram](https://instagram.com/saaloera)  
-- [Email](mailto:salm4fazila@gmail.com)
+👉 [INSTAGRAM](https://instagram.com/saaloera)  
+👉 [EMAIL](mailto:salm4fazila@gmail.com)
