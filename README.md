@@ -1,6 +1,5 @@
 # Hi, I'm Salma 👋
-Currently focusing on learning NLP and Machine Learning from 0. This GitHub is where I build open-source projects from university and bootcamps as a way to strengthen my fundamentals. My goal is to keep growing in AI while sharing my journey and projects along the way.
-- 🎓 Undergraduate student of Computer Science
+Currently focusing on learning NLP and Machine Learning from 0. This GitHub is where I build open-source projects from university and bootcamps as a way to strengthen my fundamentals. My goal is to keep growing in AI while sharing my journey and projects along the way. 🎓 Undergraduate student of Computer Science
 
 ## ✍️ My Works on Medium
 I also writing about programming, data, and career in computer science.  
