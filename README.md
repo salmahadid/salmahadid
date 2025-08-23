@@ -7,6 +7,7 @@ I also writing about programming, data, and career in computer science.
 Check out my latest posts here:
 
 - [Eksplorasi dan Visualisasi Dataset Iris dalam Bahasa R](https://medium.com/@salcreates/eksplorasi-dan-visualisasi-dataset-iris-dalam-bahasa-r-87ecd6d5f675)
+- [Analisis Regresi Linier Berganda APBN Jakarta 2019–2023 dalam Bahasa R](https://medium.com/@salcreates/analisis-regresi-linier-berganda-apbn-jakarta-2019-2023-dalam-bahasa-r-886d3011c870)
 
 👉 See more on [Medium](https://medium.com/@salcreates)
 
