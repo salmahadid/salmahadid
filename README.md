@@ -11,6 +11,6 @@ Check out my latest posts here:
 
 👉 See more on [Medium](https://medium.com/@salcreates)
 
-## 🌸 Find Me
+## Contact Me
 👉 [INSTAGRAM](https://instagram.com/saaloera)  
 👉 [EMAIL](mailto:salm4fazila@gmail.com)
