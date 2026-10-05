@@ -12,9 +12,9 @@
       {
         "id": 0,
         "title": "Diagram 1",
-        "diagramType": "Generic",
-        "placeholder": "New generic diagram description",
-        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.3.0",
         "cells": [
           {
@@ -44,7 +44,7 @@
         ]
       }
     ],
-    "diagramTop": 4,
+    "diagramTop": 5,
     "reviewer": "",
     "threatTop": 0
   }
