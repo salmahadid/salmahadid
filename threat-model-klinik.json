@@ -1,0 +1,270 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "Portal Klinik - Hasil Lab Online",
+    "owner": "",
+    "description": "Portal layanan online sebuah Klinik Kesehatan untuk melihat hasil tes laboratorium. Pasien login lewat WiFi publik dan meminta rekam medis ke Aplikasi Portal Klinik, yang mengambil data dari Server Database Rumah Sakit.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD Portal Klinik",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": { "x": 330, "y": 80 },
+            "size": { "width": 620, "height": 340 },
+            "attrs": {
+              "headerText": { "text": "Trust Boundary (Zona Internal)" },
+              "body": { "stroke": "#333333", "strokeWidth": 2, "strokeDasharray": "9 8" }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "a1111111-0000-4000-8000-000000000001",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary (Zona Internal)",
+              "description": "Memisahkan zona publik (Pasien / WiFi publik) dari zona internal (Portal Klinik dan Database RS)",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": { "x": 60, "y": 200 },
+            "size": { "width": 160, "height": 80 },
+            "attrs": {
+              "text": { "text": "Pasien" },
+              "body": { "stroke": "#333333", "strokeWidth": 1.5, "strokeDasharray": null }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "a1111111-0000-4000-8000-000000000002",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Pasien",
+              "description": "Pengguna eksternal yang login memakai WiFi publik",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isTrustBoundary": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": { "x": 480, "y": 190 },
+            "size": { "width": 100, "height": 100 },
+            "attrs": {
+              "text": { "text": "Aplikasi Portal Klinik" },
+              "body": { "stroke": "#333333", "strokeWidth": 1.5, "strokeDasharray": null }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "a1111111-0000-4000-8000-000000000003",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Process",
+              "name": "Aplikasi Portal Klinik",
+              "description": "Aplikasi web yang melayani login dan permintaan data rekam medis",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isTrustBoundary": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "b2222222-0000-4000-8000-000000000003",
+                  "title": "Tidak ada jejak audit akses rekam medis",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Pasien atau staf dapat menyangkal telah mengakses atau mengubah data rekam medis karena aktivitas pengguna tidak tercatat dengan baik.",
+                  "mitigation": "Aktifkan audit log terpusat (user ID, waktu, IP, aksi) yang tidak dapat diubah, simpan minimal 12 bulan, dan lindungi log dengan integritas (hash/append-only).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "b2222222-0000-4000-8000-000000000005",
+                  "title": "Server portal lumpuh akibat serangan DoS",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Penyerang membanjiri portal dengan request (brute force login / HTTP flood) sehingga layanan hasil laboratorium tidak dapat diakses pasien.",
+                  "mitigation": "Terapkan rate limiting, CAPTCHA pada login, WAF/anti-DDoS, auto-scaling, dan pemantauan trafik dengan alert otomatis.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                },
+                {
+                  "id": "b2222222-0000-4000-8000-000000000006",
+                  "title": "Pasien mengakses rekam medis pasien lain",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Akibat kontrol akses lemah (IDOR), pasien biasa memanipulasi parameter ID untuk melihat rekam medis milik pasien lain atau mengakses fungsi admin.",
+                  "mitigation": "Terapkan Role-Based Access Control dan validasi kepemilikan data di sisi server pada setiap request; prinsip least privilege; uji otorisasi secara berkala.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": { "x": 760, "y": 200 },
+            "size": { "width": 160, "height": 80 },
+            "attrs": {
+              "text": { "text": "Server Database RS" },
+              "topLine": { "stroke": "#333333", "strokeWidth": 1.5, "strokeDasharray": null },
+              "bottomLine": { "stroke": "#333333", "strokeWidth": 1.5, "strokeDasharray": null }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "a1111111-0000-4000-8000-000000000004",
+            "zIndex": 3,
+            "data": {
+              "type": "tm.Store",
+              "name": "Server Database RS",
+              "description": "Database rekam medis pasien milik Rumah Sakit",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isTrustBoundary": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": { "name": "classic", "size": 6 },
+                "sourceMarker": { "name": "" },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "id": "a1111111-0000-4000-8000-000000000005",
+            "labels": [{ "position": 0.5, "attrs": { "text": { "text": "Login & Permintaan Rekam Medis" } } }],
+            "source": { "cell": "a1111111-0000-4000-8000-000000000002" },
+            "target": { "cell": "a1111111-0000-4000-8000-000000000003" },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Login & Permintaan Rekam Medis",
+              "description": "Kredensial dan permintaan data dikirim Pasien lewat WiFi publik, melintasi Trust Boundary",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "HTTP/HTTPS",
+              "threats": [
+                {
+                  "id": "b2222222-0000-4000-8000-000000000001",
+                  "title": "Pemalsuan identitas lewat WiFi palsu (Evil Twin)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Penyerang membuat hotspot WiFi palsu atau halaman login tiruan sehingga kredensial pasien dicuri dan dipakai untuk menyamar sebagai pasien.",
+                  "mitigation": "Wajibkan Multi-Factor Authentication (OTP), terapkan HSTS dan sertifikat TLS valid, serta edukasi pasien agar memverifikasi domain resmi sebelum login.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "b2222222-0000-4000-8000-000000000004",
+                  "title": "Penyadapan kredensial dan data medis (Password Stealing)",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "Penyerang menyadap jaringan WiFi publik (sniffing) untuk mendapatkan kredensial dan data rekam medis yang dikirim dalam bentuk plaintext.",
+                  "mitigation": "Sistem harus menerapkan enkripsi TLS 1.2+/HTTPS pada seluruh jalur komunikasi antara Pasien dan Portal, menonaktifkan HTTP biasa, dan mengaktifkan HSTS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": { "name": "classic", "size": 6 },
+                "sourceMarker": { "name": "" },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 11,
+            "connector": "smooth",
+            "id": "a1111111-0000-4000-8000-000000000006",
+            "labels": [{ "position": 0.5, "attrs": { "text": { "text": "Query Rekam Medis" } } }],
+            "source": { "cell": "a1111111-0000-4000-8000-000000000003" },
+            "target": { "cell": "a1111111-0000-4000-8000-000000000004" },
+            "vertices": [],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Query Rekam Medis",
+              "description": "Portal memanggil dan mengambil data rekam medis dari database RS",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "SQL",
+              "threats": [
+                {
+                  "id": "b2222222-0000-4000-8000-000000000002",
+                  "title": "SQL Injection mengubah data rekam medis",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Input berbahaya dari pengguna diteruskan portal ke database sehingga penyerang dapat mengubah, menghapus, atau menyisipkan data rekam medis.",
+                  "mitigation": "Gunakan prepared statement/parameterized query, validasi dan sanitasi input, akun database dengan hak minimum, serta enkripsi koneksi antara Portal dan Database.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 6
+  }
+}
